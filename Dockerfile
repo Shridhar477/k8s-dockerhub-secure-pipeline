@@ -12,7 +12,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 
-FROM bitnami/tomcat
-COPY --from=BUILD /app/webapp/target/*.war   /opt/bitnami/tomcat/webapps
+FROM tomcat:latest
+COPY --from=BUILD /app/webapp/target/*.war   /usr/local/tomcat/webapps
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
